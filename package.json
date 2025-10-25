@@ -1,0 +1,23 @@
+{
+  "name": "todo-list-vue3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "bun build.ts",
+    "dev": "bun server/index.ts"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "bun-plugin-vue3": "^1.0.0-beta.2",
+    "pinia": "^3.0.3",
+    "typescript": "^5.5.3",
+    "vue-router": "^4.6.3",
+    "vuetify": "3.9.7"
+  },
+  "private": true
+}
