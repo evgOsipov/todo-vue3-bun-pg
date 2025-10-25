@@ -1,10 +1,10 @@
 import { serve } from 'bun';
-import homepage from '../frontend/index.html';
+
+import './db/db.ts';
+import { routes } from './routes/routes.ts';
 
 serve({
   port: 8080,
-  routes: {
-    '/': homepage,
-  },
+  routes,
   development: true,
 });
