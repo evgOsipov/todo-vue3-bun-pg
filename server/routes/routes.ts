@@ -1,9 +1,19 @@
 import homepage from '../../frontend/index.html';
-import { registerUser } from '../services/user/register.ts';
+import { login, logout, refresh, registerUser } from '../services/user/auth-service.ts';
 
 export const routes: Bun.Serve.Routes<string, string> = {
-  '/': homepage,
-  '/api/register': {
+  // auth
+  '/auth/register': {
     POST: registerUser,
   },
+  '/auth/login': {
+    POST: login,
+  },
+  '/auth/logout': logout,
+  '/auth/refresh': refresh,
+
+  //todos CRUD
+
+
+  '/*': homepage,
 };
