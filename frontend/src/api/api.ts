@@ -33,8 +33,7 @@ export abstract class Api {
       >(url, {
         params,
       });
-      this.checkData(response);
-      return response.data;
+      return response?.data;
     } catch (e) {
       throw e;
     }
@@ -65,7 +64,7 @@ export abstract class Api {
       );
       return response?.data;
     } catch (e) {
-      throw new Error(e);
+      throw new Error((e as Error).message);
     }
   }
 
@@ -97,11 +96,5 @@ export abstract class Api {
       params,
     });
     return response.data;
-  }
-
-  private static checkData<TResult extends ApiServerResponse>(response: AxiosResponse<TResult>) {
-    if (!response || !response.data) {
-      throw new Error('');
-    }
   }
 }

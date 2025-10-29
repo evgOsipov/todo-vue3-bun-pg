@@ -1,9 +1,12 @@
 <template>
-  <MainWrapper />
+<v-skeleton-loader
+  type="table">
+
+</v-skeleton-loader>
 </template>
 
 <script lang="ts" setup>
-import MainWrapper from '../components/todo/MainWrapper.vue';
+
 </script>
 
 <style scoped>

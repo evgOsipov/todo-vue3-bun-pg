@@ -9,10 +9,6 @@ import type {
 } from '../interfaces/api/auth.ts';
 
 class AuthApi extends Api {
-  constructor() {
-    super();
-  }
-
   public async login(body: AuthLoginBody): Promise<AuthLoginResponse> {
     return Api._post<AuthLoginResponse, AuthLoginBody>('/auth/login', body);
   }

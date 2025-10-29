@@ -75,12 +75,12 @@ export const hashPassword = async (password: string): Promise<string> => {
 export const setTokens = async (req: Bun.BunRequest, user: { name: string, email: string, id: number }) => {
   const tokens = await generateTokens({ ...user });
   const cookies = req.cookies;
-  cookies.set('Authorization', `Bearer ${tokens.accessToken}`, {
+  cookies.set('accessToken', tokens.accessToken, {
     httpOnly: true,
     sameSite: 'strict',
     maxAge: 60 * 1000,
   });
-  cookies.set('X-Refresh-Token', tokens.refreshToken, {
+  cookies.set('refreshToken', tokens.refreshToken, {
     httpOnly: true,
     sameSite: 'strict',
     maxAge: 60 * 5 * 1000,
@@ -161,16 +161,15 @@ export const login = async (req: Bun.BunRequest): Promise<Response> => {
 };
 
 export const logout = async (req: Bun.BunRequest): Promise<Response> => {
-  const refreshToken = req.cookies.get('X-Refresh-Token');
-  console.log(refreshToken)
+  const refreshToken = req.cookies.get('refreshToken');
   await pg`DELETE FROM tokens WHERE refresh_token=${refreshToken}`;
-  req.cookies.delete('X-Refresh-Token');
-  req.cookies.delete('Authorization');
+  req.cookies.delete('refreshToken');
+  req.cookies.delete('accessToken');
   return new Response('OK');
 }
 
 export const refresh = async (req: Bun.BunRequest): Promise<Response> => {
-  const refreshToken = req.cookies.get('X-Refresh-Token');
+  const refreshToken = req.cookies.get('refreshToken');
   if (!refreshToken) {
     return new Response('Error refreshing token', {
       status: 403,

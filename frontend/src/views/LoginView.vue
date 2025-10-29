@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 
-import LoginContainer from '../components/login/LoginContainer.vue';
+import LoginContainer from '../components/authification/login/LoginContainer.vue';
 </script>
 
 <style scoped>

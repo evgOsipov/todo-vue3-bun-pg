@@ -5,17 +5,17 @@
         ToDo List
       </v-card-title>
       <v-card-text class="text-center text-body-1">
-        Enter in your account
+        {{ title }}
       </v-card-text>
-      <LoginForm />
+      <slot />
       <v-card-actions class="pa-0 justify-end">
         <v-btn
+          :to="goToUrl"
           class="text-decoration-underline text-body-2 text-disabled"
           variant="text"
           density="compact"
-          to="/signUp"
         >
-          Create account
+          {{ goToText }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -23,7 +23,11 @@
 </template>
 
 <script lang="ts" setup>
-import LoginForm from './LoginForm.vue';
+defineProps<{
+  title: string;
+  goToText: string;
+  goToUrl: string;
+}>();
 </script>
 
 <style scoped>

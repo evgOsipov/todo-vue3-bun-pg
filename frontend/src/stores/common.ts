@@ -1,15 +1,13 @@
 import type { AxiosError } from 'axios';
-import { defineStore, storeToRefs } from 'pinia';
+import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import { Api } from '../api/api.ts';
 import { authApi } from '../api/auth.ts';
-import { useUser } from './user.ts';
 
 export const useCommon = defineStore('common', () => {
   const router = useRouter();
-  const { currentUser } = storeToRefs(useUser());
 
   const appTitle = ref('ToDo list');
 
@@ -26,15 +24,12 @@ export const useCommon = defineStore('common', () => {
       }
     }
     else if (error.response?.status === 403) {
-      await router.push('/login');
+      await router.push('/signIn');
     }
   }
 
   const initApp = async () => {
     Api.addInterceptor(axiosInterceptor);
-    if (!currentUser.value?.email) {
-      await router.push('/signIn');
-    }
   }
 
   return {

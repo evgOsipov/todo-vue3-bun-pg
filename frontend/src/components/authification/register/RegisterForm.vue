@@ -50,7 +50,7 @@ import { storeToRefs } from 'pinia';
 import { ref, watch } from 'vue';
 import type { VForm } from 'vuetify/components';
 
-import { useAuth } from '../../stores/auth.ts';
+import { useAuth } from '../../../stores/auth.ts';
 
 const {
   email,
